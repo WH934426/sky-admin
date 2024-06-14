@@ -1,0 +1,8 @@
+dist
+node_modules
+.eslintrc.cjs
+.eslintignore
+public
+src/styles/fonts
+src/styles/icon
+src/assets

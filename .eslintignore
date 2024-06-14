@@ -1,0 +1,16 @@
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+gen
+.vscode
+index.html
+LICENSE
+node_modules
+dist
+public
+.prettierrc.js
+src/styles/icon
+src/styles/fonts
+src/assets
