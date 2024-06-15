@@ -53,10 +53,12 @@
     "vue-tsc": "^2.0.6"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --max-warnings 0"
+    "src/**/*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add ."
     ],
-    "src/**/*.{vue,less,postcss,css,scss}": [
+    "src/**/*.{vue,css,scss}": [
       "stylelint --max-warnings 0"
     ]
   }

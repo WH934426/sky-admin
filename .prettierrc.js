@@ -1,19 +1,11 @@
-module.exports = {
+export default {
   "printWidth": 100,
-  "tabWidth": 2,
-  "useTabs": true,
-  "semi": false,
   "singleQuote": true,
-  "quoteProps": 'as-needed',
-  "trailingComma": 'none',
+  "semi": false,
   "bracketSpacing": true,
-  "arrowParens": 'always',
-  "rangeStart": 0,
-  "rangeEnd": Infinity,
-  "requirePragma": false,
-  "insertPragma": false,
-  "proseWrap": 'preserve',
-  "htmlWhitespaceSensitivity": 'css',
-  "vueIndentScriptAndStyle": false,
-  "endOfLine": 'crlf'
-};
+  "htmlWhitespaceSensitivity": "ignore",
+  "endOfLine": "crlf",
+  "trailingComma": "all",
+  "tabWidth": 2,
+  arrowParens: "always"
+}
