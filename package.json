@@ -15,14 +15,19 @@
     "commitlint": "commitlint --config commitlint.config.cjs -e -V"
   },
   "dependencies": {
+    "js-cookie": "^1.0.4",
     "normalize.css": "^8.0.1",
-    "vue": "^3.4.21"
+    "nprogress": "^0.2.0",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.3"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.7",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.14.2",
+    "@types/nprogress": "^0.2.3",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
     "@vitejs/plugin-vue": "^5.0.4",
