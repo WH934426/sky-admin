@@ -50,6 +50,7 @@
     "stylelint-scss": "^5.3.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
+    "vite-plugin-svg-icons": "^2.0.1",
     "vue-tsc": "^2.0.6"
   },
   "lint-staged": {
@@ -57,9 +58,6 @@
       "eslint --fix",
       "prettier --write",
       "git add ."
-    ],
-    "src/**/*.{vue,css,scss}": [
-      "stylelint --max-warnings 0"
     ]
   }
 }

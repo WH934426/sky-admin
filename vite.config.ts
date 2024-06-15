@@ -1,12 +1,19 @@
 import vue from '@vitejs/plugin-vue'
-import { fileURLToPath, URL } from 'node:url'
+import * as path from "path";
 import { defineConfig, loadEnv } from 'vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd())
   return {
-    plugins: [ vue() ],
+    plugins: [
+      vue(),
+      createSvgIconsPlugin({
+        iconDirs: [ path.resolve(process.cwd(), 'src/assets/svg') ],
+        symbolId: 'icon-[dir]-[name]'
+      })
+    ],
     server: {
       open: true,
       host: '0.0.0.0',
@@ -21,7 +28,7 @@ export default defineConfig(({ command, mode }) => {
     },
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url))
+        '@': path.resolve(__dirname, 'src')
       }
     }
   }
