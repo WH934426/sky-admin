@@ -36,6 +36,7 @@ module.exports = {
     "vue"
   ],
   "rules": {
+    "prettier/prettier": "error",
     // eslint：https://www.eslint.com.cn/docs/rules/
     'no-var': 'error', // 使用let/const
     'no-multiple-empty-lines': ['warn', {max: 1}], //不允许多个空行
