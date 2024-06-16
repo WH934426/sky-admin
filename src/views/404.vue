@@ -14,15 +14,17 @@ onMounted(() => {
   <div class="http404-container">
     <div class="http404">
       <div class="pic-404">
-        <img class="pic-404__parent" src="@/assets/images/404.png" alt="404">
-        <img class="pic-404__child left" src="@/assets/images/404-cloud.png" alt="404">
-        <img class="pic-404__child mid" src="@/assets/images/404-cloud.png" alt="404">
-        <img class="pic-404__child right" src="@/assets/images/404-cloud.png" alt="404">
+        <img class="pic-404__parent" src="@/assets/images/404.png" alt="404" />
+        <img class="pic-404__child left" src="@/assets/images/404-cloud.png" alt="404" />
+        <img class="pic-404__child mid" src="@/assets/images/404-cloud.png" alt="404" />
+        <img class="pic-404__child right" src="@/assets/images/404-cloud.png" alt="404" />
       </div>
       <div class="text-404">
         <div class="text-404__oops">OOPS!</div>
-        <div class="text-404__info">All rights reserved
-          <a style="color:#20a0ff" href="#" target="_blank"> 404 </a></div>
+        <div class="text-404__info">
+          All rights reserved
+          <a style="color: #20a0ff" href="#" target="_blank">404</a>
+        </div>
         <div class="text-404__headline">404 Page Not Found</div>
         <div class="text-404__info">
           Please check that the URL you entered is correct, or click the button below to return to
@@ -33,7 +35,6 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 .http404-container {

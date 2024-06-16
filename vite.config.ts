@@ -1,5 +1,5 @@
 import vue from '@vitejs/plugin-vue'
-import * as path from "path";
+import * as path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
@@ -13,15 +13,15 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       vue(),
       createSvgIconsPlugin({
-        iconDirs: [ path.resolve(process.cwd(), 'src/assets/svg') ],
-        symbolId: 'icon-[dir]-[name]'
+        iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
+        symbolId: 'icon-[dir]-[name]',
       }),
       AutoImport({
-        resolvers: [ ElementPlusResolver() ],
-        imports: [ 'vue', 'vue-router' ]
+        resolvers: [ElementPlusResolver()],
+        imports: ['vue', 'vue-router'],
       }),
       Components({
-        resolvers: [ ElementPlusResolver() ],
+        resolvers: [ElementPlusResolver()],
       }),
     ],
     server: {
@@ -29,17 +29,17 @@ export default defineConfig(({ command, mode }) => {
       host: '0.0.0.0',
       port: 3000,
       proxy: {
-        '/api': {
+        '/admin': {
           target: env.VITE_APP_URL,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
-        }
-      }
+          rewrite: (path) => path.replace(/^\/admin/, ''),
+        },
+      },
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, 'src')
-      }
-    }
+        '@': path.resolve(__dirname, 'src'),
+      },
+    },
   }
 })
