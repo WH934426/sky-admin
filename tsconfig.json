@@ -16,10 +16,11 @@
       ]
     },
     "types": [
-      "vite-plugin-svg-icons/client"
+      "vite-plugin-svg-icons/client",
+      "element-plus/global"
     ],
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
