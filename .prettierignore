@@ -1,0 +1,13 @@
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+out
+gen
+
+dist
+node_modules
+public
+src/assets
+src/icons
