@@ -12,7 +12,12 @@ export default defineConfig({
     AutoImport({
       resolvers: [ElementPlusResolver()],
       imports: ['vue','vue-router'],
-      dts: 'src/types/auto-imports.d.ts'
+      dts: 'src/types/auto-imports.d.ts',
+      eslintrc: {
+        enabled: false,
+        filepath: './.eslintrc-auto-import.json',
+        globalsPropValue: true
+      }
     }),
     Components({
       resolvers: [ElementPlusResolver({importStyle: 'sass'})],
