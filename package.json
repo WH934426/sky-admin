@@ -10,13 +10,16 @@
 		"lint:eslint": "eslint src && eslint src --fix",
 		"lint:prettier": "prettier --write src/**/*.{js,ts,vue}",
 		"prepare": "husky",
-		"pre-commit": "lint-staged"
+		"pre-commit": "lint-staged",
+		"lint:commit": "commitlint --edit"
 	},
 	"dependencies": {
 		"element-plus": "^2.8.4",
 		"vue": "^3.4.37"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^19.5.0",
+		"@commitlint/config-conventional": "^19.5.0",
 		"@eslint/js": "^9.11.1",
 		"@types/node": "^22.7.4",
 		"@vitejs/plugin-vue": "^5.1.2",
