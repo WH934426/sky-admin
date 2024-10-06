@@ -1,9 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { AppMain, Navbar, Sidebar } from './components';
+</script>
 
 <template>
-	<div>
-		layout
-		<router-view></router-view>
+	<div class="app-wrapper">
+		<Sidebar class="sidebar-container" />
+		<div class="main-container">
+			<Navbar />
+			<AppMain />
+		</div>
 	</div>
 </template>
 
