@@ -28,6 +28,6 @@ src/types/auto-imports.d.ts
 src/types/components.d.ts
 .eslintrc-auto-import.json
 
-# env file
+# .env
 .env.development
-.env.production 
+.env.production
