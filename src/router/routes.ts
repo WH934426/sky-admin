@@ -1,5 +1,13 @@
 import type { RouteRecordRaw } from 'vue-router';
 import Layout from '@/layout/index.vue';
+import {
+	StatisticsRoute,
+	OrderRoute,
+	SetmealRoute,
+	DishRoute,
+	CategoryRoute,
+	EmployeeRoute
+} from './modules';
 
 export const constantRoutes: Array<RouteRecordRaw> = [
 	{
@@ -41,9 +49,15 @@ export const constantRoutes: Array<RouteRecordRaw> = [
 			}
 		]
 	},
+	StatisticsRoute,
+	OrderRoute,
+	SetmealRoute,
+	DishRoute,
+	CategoryRoute,
+	EmployeeRoute,
 	// 添加路由信息在此之前
 	{
-		path: '/:catchAll(.*)',
+		path: '/:pathMatch(.*)*',
 		redirect: '/404'
 	}
 ];
