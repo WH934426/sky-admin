@@ -1,0 +1,121 @@
+.sidebar-container {
+  .el-menu {
+    border: none;
+    height: 100%;
+    width: 100% !important;
+
+    .el-menu-item {
+      color: #333;
+      height: 42px;
+      line-height: 38px;
+      padding: 0 0 0 17px !important;
+      margin: 0 0 20px 0;
+  
+      &:hover {
+        color: #ffffff !important;
+        background: #ffc100 !important;
+        border-radius: 4px;
+  
+        span {
+          color: #ffffff !important;
+        }
+      }
+  
+      &:active {
+        color: #333333 !important;
+        background-color: transparent !important;
+  
+        span {
+          color: #333333 !important;
+        }
+      }
+    }
+    
+    
+
+    .router-link-active .el-menu-item,
+    .el-menu-item.is-active {
+      background-color: #E3E3E3 !important;
+      color: #333333 !important;
+      border-radius: 4px !important;
+
+      span {
+        color: #333333 !important;
+        font-weight: 500 !important;
+      }
+    }
+
+    .is-active {
+      color: rgb(191, 203, 217) !important;
+    }
+  }
+
+  .el-submenu.is-active {
+    > .el-submenu__title {
+      color: #f4f4f5 !important;
+    }
+  }
+
+  .el-submenu {
+    > .el-submenu__title {
+      min-width: 190px !important;
+      background-color: #272a36 !important;
+    }
+
+    .el-menu-item {
+      min-width: 190px !important;
+      background-color: #272a36 !important;
+    }
+  }
+
+  .el-menu-item {
+
+    position: relative;
+    font-size: 14px !important;
+    padding-left: 52px !important;
+  }
+
+  .el-submenu__title {
+    font-size: 16px !important;
+    position: relative;
+    z-index: 9;
+
+  }
+
+  .scrollbar-wrapper {
+    overflow-x: hidden !important;
+  }
+
+  .el-scrollbar__view {
+    height: 100%;
+  }
+
+  .el-scrollbar__bar.is-vertical {
+    right: 0;
+  }
+
+  .el-scrollbar__bar.is-horizontal {
+    display: none;
+  }
+}
+
+.hideSidebar {
+  .sidebar-container .el-menu .el-menu-item {
+    padding-left: 0 !important;
+
+    &:hover {
+      background-color: #4D4D4D !important;
+    }
+
+  }
+
+  .sidebar-container .router-link-active .el-menu-item,
+  .el-menu-item.is-active {
+    background-color: #E3E3E3 !important;
+  }
+
+  .sidebar-container .router-link-active .el-menu-item:hover,
+  .el-menu-item.is-active {
+    background-color: #FFC200 !important;
+  }
+}
