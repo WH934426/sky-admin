@@ -9,9 +9,9 @@ export default {
 			component: () => import('@/views/employee/index.vue'),
 			name: 'Employee',
 			meta: {
-				title: '订单管理',
+				title: '员工管理',
 				icon: 'employee',
-				employee: 7
+				order: 7
 			}
 		}
 	]

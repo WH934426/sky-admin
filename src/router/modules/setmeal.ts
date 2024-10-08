@@ -9,9 +9,9 @@ export default {
 			component: () => import('@/views/setmeal/index.vue'),
 			name: 'Setmeal',
 			meta: {
-				title: '订单管理',
+				title: '套餐管理',
 				icon: 'combo',
-				setmeal: 4
+				order: 4
 			}
 		}
 	]
