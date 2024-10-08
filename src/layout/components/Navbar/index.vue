@@ -123,27 +123,26 @@ const resetKey = ref(0);
 			}
 		}
 
-		// FIXME: 无法显示图标
 		.amendPwdIcon,
 		.logout {
 			i {
 				width: 18px;
 				height: 18px;
+				// 不使用background，不造成覆盖
 				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center center;
 				margin-top: 8px;
 			}
 		}
-
 		.amendPwdIcon i {
-			background: url('@/assets/icons/btn_gaimi@2x.png') no-repeat;
+			background-image: url('@/assets/icons/btn_gaimi@2x.png');
 		}
-
-		.logout i {
-			background: url('@/assets/icons/btn_close@2x.png') no-repeat 100% 100%;
-		}
-
 		.logout {
 			cursor: pointer;
+			i {
+				background-image: url('@/assets/icons/btn_close@2x.png');
+			}
 		}
 	}
 	.right-status {
@@ -220,6 +219,40 @@ const resetKey = ref(0);
 
 	&.before {
 		content: '';
+	}
+}
+
+.userInfo {
+	background: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	box-shadow: 0 2px 4px 0 rgba($color: #000000, $alpha: 0.14);
+	width: 100%;
+	height: 105px;
+	border-radius: 4px;
+	line-height: 32px;
+	padding: 0 0 5px;
+	.userList {
+		width: 95%;
+		padding-left: 5px;
+	}
+	p {
+		cursor: pointer;
+		height: 32px;
+		line-height: 32px;
+		padding: 0 5px 0 7px;
+
+		i {
+			margin-left: 10px;
+			vertical-align: middle;
+			float: right;
+		}
+
+		&:hover {
+			background: #f6f1e1;
+		}
 	}
 }
 </style>
