@@ -11,19 +11,10 @@ const classObj = computed(() => {
 		withoutAnimation: appStore.isWithoutAnimation
 	};
 });
-const openedSidebar = computed(() => appStore.isSidebarOpened);
-const handleClickOutside = () => {
-	appStore.closeSidebar(false);
-};
 </script>
 
 <template>
 	<div :class="classObj" class="app-wrapper">
-		<div
-			v-if="openedSidebar"
-			class="drawer-bg"
-			@click="handleClickOutside"
-		></div>
 		<Sidebar class="sidebar-container" />
 		<div class="main-container">
 			<Navbar />
@@ -47,16 +38,6 @@ $sidebarWidth: 190px;
 		content: '';
 		display: table;
 		clear: both;
-	}
-
-	.drawer-bg {
-		background: #000;
-		opacity: 0.3;
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		z-index: 999;
 	}
 
 	.sidebar-container {
