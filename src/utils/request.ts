@@ -1,18 +1,20 @@
-import axios from 'axios';
+import { Result } from '@/types/result';
 import type {
-	AxiosInstance,
-	InternalAxiosRequestConfig,
 	AxiosError,
-	AxiosResponse
+	AxiosInstance,
+	AxiosResponse,
+	InternalAxiosRequestConfig
 } from 'axios';
+import axios from 'axios';
+import { ElMessage } from 'element-plus';
 
-const request: AxiosInstance = axios.create({
+const service: AxiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_APP_BASE_URL,
 	timeout: 5 * 60 * 1000 // 5分钟
 });
 
 // 请求拦截器
-request.interceptors.request.use(
+service.interceptors.request.use(
 	(config: InternalAxiosRequestConfig) => {
 		// TODO: 添加token，并实现鉴权
 		return config;
@@ -23,38 +25,70 @@ request.interceptors.request.use(
 );
 
 // 响应拦截器
-request.interceptors.response.use(
-	(response: AxiosResponse) => {
-		console.log('resonse', response);
-		if (response.status === 401) {
-			// TODO: 使用vue-router进行跳转
-			window.location.href = '/login';
+service.interceptors.response.use(
+	(response: AxiosResponse<Result>) => {
+		// 调试信息
+		console.log('response', response);
+		// 统一处理返回结果
+		const { code, message, data } = response.data;
+		if (code === 200) {
+			return data;
+		} else {
+			ElMessage.error(message);
+			return Promise.reject(new Error(message));
 		}
-
-		// 清除代理路径
-		if (response.config.url) {
-			response.config.url = response.config.url.replace('/api', '');
-		}
-		return response.data;
 	},
 	(error: AxiosError) => {
-		if (error && error.response) {
-			switch (error.response.status) {
-				case 401:
-					// TODO: 使用vue-router进行跳转
-					window.location.href = '/login';
-					break;
-				case 405:
-					error.message = '请求错误';
-					break;
-			}
+		let message;
+		const status = error.response?.status;
+		switch (status) {
+			case 401:
+				message = 'token 失效，请重新登录';
+				break;
+			case 403:
+				message = '拒绝访问';
+				break;
+			case 404:
+				message = '请求地址错误';
+				break;
+			case 500:
+				message = '服务器故障';
+				break;
+			default:
+				message = '网络连接故障';
 		}
-		// 清除代理路径
-		if (error.config && error.config.url) {
-			error.config.url = error.config.url.replace('/api', '');
-		}
+		ElMessage.error(message);
 		return Promise.reject(error);
 	}
 );
 
+// 定义二次封装的API接口
+const request = {
+	get<T = any>(url: string, config?: InternalAxiosRequestConfig): Promise<T> {
+		return service.get(url, config);
+	},
+
+	post<T = any>(
+		url: string,
+		data?: object,
+		config?: InternalAxiosRequestConfig
+	): Promise<T> {
+		return service.post(url, data, config);
+	},
+
+	put<T = any>(
+		url: string,
+		data?: object,
+		config?: InternalAxiosRequestConfig
+	): Promise<T> {
+		return service.put(url, data, config);
+	},
+
+	delete<T = any>(
+		url: string,
+		config?: InternalAxiosRequestConfig
+	): Promise<T> {
+		return service.delete(url, config);
+	}
+};
 export default request;
