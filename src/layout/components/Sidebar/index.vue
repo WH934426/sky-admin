@@ -94,41 +94,117 @@ const sortedExtractedRoutes = computed(() => {
 .sidebar {
 	height: 100%;
 	width: 100%;
-}
 
-.el-scrollbar {
-	height: 100%;
-	background-color: rgb(52, 55, 68);
-}
+	.el-scrollbar {
+		height: 100%;
+		background-color: rgb(52, 55, 68);
 
-.el-menu {
-	border: none;
-	height: calc(95vh - 23px);
-	width: 100% !important;
-	padding: 47px 15px 0;
-	--el-menu-bg-color: #343744;
-	--el-menu-text-color: #bfcbd9;
-	--el-menu-active-color: #ffc200;
-}
+		.el-scrollbar__view {
+			height: 100%;
+		}
 
-.item {
-	display: flex;
-	align-items: center; // 垂直居中对齐
-	padding: 0 20px; // 内边距可以根据需要调整
+		.el-scrollbar__bar.is-vertical {
+			right: 0;
+		}
 
-	.icon {
-		margin-right: 8px; // 图标和标题之间的间距
-		width: 18px; // 设置图标宽度
-		height: 18px; // 设置图标高度
-		display: inline-flex; // 确保图标是内联元素
-		align-items: center; // 垂直居中对齐
-		justify-content: center; // 水平居中对齐
+		.el-scrollbar__bar.is-horizontal {
+			display: none;
+		}
 	}
 
-	.title {
-		white-space: nowrap; // 防止标题换行
-		overflow: hidden; // 隐藏溢出的内容
-		text-overflow: ellipsis; // 溢出时显示省略号
+	.el-menu {
+		border: none;
+		height: calc(95vh - 23px);
+		width: 100%;
+		padding: 47px 15px 0;
+		--el-menu-bg-color: #343744;
+		--el-menu-text-color: #f4f4f5;
+		--el-menu-active-color: #333333;
+
+		.el-menu-item {
+			color: #f4f4f5;
+			height: 42px;
+			line-height: 38px;
+			margin: 0 0 20px 0;
+			position: relative;
+			font-size: 14px;
+
+			&:hover {
+				color: #ffffff;
+				background: #ffc100;
+				border-radius: 4px;
+
+				span {
+					color: #ffffff;
+				}
+			}
+		}
+
+		.el-menu-item.router-link-active,
+		.el-menu-item.is-active {
+			background-color: #e3e3e3;
+			color: #f4f4f5;
+			border-radius: 4px;
+
+			span {
+				color: #333333;
+				font-weight: 500;
+			}
+		}
+
+		.el-menu-item.is-active {
+			color: #bfcbd9;
+		}
+
+		.el-submenu__title {
+			font-size: 16px;
+			position: relative;
+			z-index: 9;
+		}
+	}
+
+	.item {
+		display: flex;
+		align-items: center; // 垂直居中对齐
+		padding: 0 20px; // 内边距可以根据需要调整
+
+		.icon {
+			margin-right: 20px; // 图标和标题之间的间距
+			width: 18px; // 设置图标宽度
+			height: 18px; // 设置图标高度
+			display: inline-flex; // 确保图标是内联元素
+			align-items: center; // 垂直居中对齐
+			justify-content: center; // 水平居中对齐
+		}
+
+		.title {
+			white-space: nowrap; // 防止标题换行
+			overflow: hidden; // 隐藏溢出的内容
+			text-overflow: ellipsis; // 溢出时显示省略号
+		}
+	}
+}
+
+// 隐藏侧边栏样式
+.sidebar.hideSidebar {
+	.el-menu {
+		.el-menu-item {
+			padding-left: 0;
+
+			&:hover {
+				background-color: #4d4d4d;
+			}
+		}
+
+		.el-menu-item.router-link-active,
+		.el-menu-item.is-active {
+			background-color: #e3e3e3;
+		}
+
+		.el-menu-item.router-link-active:hover,
+		.el-menu-item.is-active:hover {
+			background-color: #ffc200;
+		}
 	}
 }
 </style>
