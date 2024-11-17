@@ -1,5 +1,13 @@
-import type { RouteRecordRaw } from 'vue-router';
 import Layout from '@/layout/index.vue';
+import type { RouteRecordRaw } from 'vue-router';
+import {
+	CategoryRoute,
+	DishRoute,
+	EmployeeRoute,
+	OrderRoute,
+	SetmealRoute,
+	StatisticsRoute
+} from './modules';
 
 export const constantRoutes: Array<RouteRecordRaw> = [
 	{
@@ -24,7 +32,6 @@ export const constantRoutes: Array<RouteRecordRaw> = [
 			auth: false
 		}
 	},
-	// TODO: 后期拆分
 	{
 		path: '/dashboard',
 		component: Layout,
@@ -41,9 +48,15 @@ export const constantRoutes: Array<RouteRecordRaw> = [
 			}
 		]
 	},
+	StatisticsRoute,
+	OrderRoute,
+	SetmealRoute,
+	DishRoute,
+	CategoryRoute,
+	EmployeeRoute,
 	// 添加路由信息在此之前
 	{
-		path: '/:catchAll(.*)',
+		path: '/:pathMatch(.*)*',
 		redirect: '/404'
 	}
 ];
