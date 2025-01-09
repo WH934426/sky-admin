@@ -9,3 +9,10 @@ import type { LoginDTO, LoginVO } from './types/employee';
 export const empLoginAPI = (data: LoginDTO) => {
 	return request.post<LoginVO>('/employee/login', data);
 };
+
+/**
+ * 员工退出登录
+ */
+export const empLogoutAPI = () => {
+	return request.post('/employee/logout');
+};

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAppStore } from '@/stores';
+import { useAppStore, useUserStore } from '@/stores';
 
 const appStore = useAppStore();
 // 侧边栏状态
@@ -18,6 +18,14 @@ const toggleShow = () => {
 };
 const mouseLeaves = () => {
 	shopShow.value = false;
+};
+
+// 退出登录
+const $router = useRouter();
+const userStore = useUserStore();
+const logout = async () => {
+	await userStore.logout();
+	await $router.push('/login');
 };
 </script>
 
@@ -53,7 +61,7 @@ const mouseLeaves = () => {
 					<!-- 弹窗 -->
 					<div v-if="shopShow" class="userList">
 						<p class="amendPwdIcon">修改密码<i></i></p>
-						<p class="logout">退出登录<i></i></p>
+						<p class="logout" @click="logout">退出登录<i></i></p>
 					</div>
 				</div>
 			</div>
