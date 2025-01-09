@@ -1,12 +1,13 @@
-import { Result } from '@/types/result';
 import type {
 	AxiosError,
 	AxiosInstance,
+	AxiosPromise,
 	AxiosResponse,
 	InternalAxiosRequestConfig
 } from 'axios';
 import axios from 'axios';
 import { ElMessage } from 'element-plus';
+import { useUserStore } from '@/stores';
 
 const service: AxiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_APP_BASE_URL,
@@ -16,7 +17,12 @@ const service: AxiosInstance = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
 	(config: InternalAxiosRequestConfig) => {
-		// TODO: 添加token，并实现鉴权
+		const userStore = useUserStore();
+		const hasToken = userStore.userinfo.token;
+
+		if (hasToken) {
+			config.headers['token'] = hasToken;
+		}
 		return config;
 	},
 	(error: AxiosError) => {
@@ -26,16 +32,14 @@ service.interceptors.request.use(
 
 // 响应拦截器
 service.interceptors.response.use(
-	(response: AxiosResponse<Result>) => {
+	(response: AxiosResponse) => {
 		// 调试信息
 		console.log('response', response);
-		// 统一处理返回结果
-		const { code, message, data } = response.data;
-		if (code === 200) {
-			return data;
+		if (response.data.code === 200) {
+			return response.data;
 		} else {
-			ElMessage.error(message);
-			return Promise.reject(new Error(message));
+			ElMessage.error(response.data.message);
+			return Promise.reject(new Error(response.data.message));
 		}
 	},
 	(error: AxiosError) => {
@@ -64,30 +68,33 @@ service.interceptors.response.use(
 
 // 定义二次封装的API接口
 const request = {
-	get<T = any>(url: string, config?: InternalAxiosRequestConfig): Promise<T> {
+	get<T = any>(
+		url: string,
+		config?: Partial<InternalAxiosRequestConfig>
+	): AxiosPromise<T> {
 		return service.get(url, config);
 	},
 
 	post<T = any>(
 		url: string,
 		data?: object,
-		config?: InternalAxiosRequestConfig
-	): Promise<T> {
+		config?: Partial<InternalAxiosRequestConfig>
+	): AxiosPromise<T> {
 		return service.post(url, data, config);
 	},
 
 	put<T = any>(
 		url: string,
 		data?: object,
-		config?: InternalAxiosRequestConfig
-	): Promise<T> {
+		config?: Partial<InternalAxiosRequestConfig>
+	): AxiosPromise<T> {
 		return service.put(url, data, config);
 	},
 
 	delete<T = any>(
 		url: string,
-		config?: InternalAxiosRequestConfig
-	): Promise<T> {
+		config?: Partial<InternalAxiosRequestConfig>
+	): AxiosPromise<T> {
 		return service.delete(url, config);
 	}
 };
