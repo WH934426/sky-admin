@@ -3,7 +3,8 @@ import type {
 	EmployeeEntity,
 	EmployeePageQueryDTO,
 	LoginDTO,
-	LoginVO
+	LoginVO,
+	EmployeeDTO
 } from './types/employee';
 import type { PageResult } from '@/types/result';
 
@@ -45,4 +46,27 @@ export const empGetListAPI = (params: EmployeePageQueryDTO) => {
 			}
 		}
 	);
+};
+
+/**
+ * 添加员工
+ * @param data 员工数据
+ */
+export const empAddAPI = (data: EmployeeDTO) => {
+	return request.post('/employee', data);
+};
+
+/**
+ * 根据id获取员工信息
+ * @param id 员工id
+ */ export const empGetById = (id: number) => {
+	return request.get<EmployeeEntity>(`/employee/${id}`);
+};
+
+/**
+ * 修改员工信息
+ * @param data 员工数据
+ */
+export const empUpdateAPI = (data: EmployeeDTO) => {
+	return request.put('/employee', data);
 };

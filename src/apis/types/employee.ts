@@ -57,3 +57,19 @@ export interface EmployeeEntity {
 	// 最后修改人id
 	updateUser: number;
 }
+
+// 添加员工
+export interface EmployeeDTO {
+	// 员工id
+	id?: number | null;
+	// 员工姓名
+	name: string;
+	// 员工用户名
+	username: string;
+	// 员工手机号
+	phone: string;
+	// 员工性别
+	sex: string;
+	// 员工身份证号
+	idNumber: string;
+}
