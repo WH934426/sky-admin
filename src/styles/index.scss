@@ -58,3 +58,57 @@ ul {
 li {
   list-style: none;
 }
+
+// 项目公共样式
+.dashboard-container {
+  margin: 30px;
+
+  .container {
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    padding: 30px 28px;
+    border-radius: 4px;
+
+    .table-bar {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 20px;
+
+      .continue {
+        border-color: #333333;
+        background: #333333;
+        color: #ffffff;
+      }
+
+      .continue:hover {
+        background-color: #999999;
+        border-color: #999999;
+        color: #ffffff;
+      }
+
+      .continue:active {
+        background-color: #2a2a2a;
+        border-color: #2a2a2a;
+        color: #ffffff;
+      }
+    }
+
+    .table-box {
+      width: 100%;
+      border: 1px solid #f3f4f7;
+      border-bottom: 0;
+    }
+
+    .page-list {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .normal-btn {
+      background: #333333;
+      color: #fff;
+      margin-left: 20px;
+    }
+  }
+}
