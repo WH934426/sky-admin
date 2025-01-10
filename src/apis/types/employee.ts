@@ -73,3 +73,13 @@ export interface EmployeeDTO {
 	// 员工身份证号
 	idNumber: string;
 }
+
+// 修改员工密码
+export interface EmployeeEditPasswordDTO {
+	// 员工id
+	empId: number;
+	// 新密码
+	newPassword: string;
+	// 旧密码
+	oldPassword: string;
+}

@@ -4,7 +4,8 @@ import type {
 	EmployeePageQueryDTO,
 	LoginDTO,
 	LoginVO,
-	EmployeeDTO
+	EmployeeDTO,
+	EmployeeEditPasswordDTO
 } from './types/employee';
 import type { PageResult } from '@/types/result';
 
@@ -69,4 +70,12 @@ export const empAddAPI = (data: EmployeeDTO) => {
  */
 export const empUpdateAPI = (data: EmployeeDTO) => {
 	return request.put('/employee', data);
+};
+
+/**
+ * 修改员工密码
+ * @param data 员工密码数据
+ */
+export const empUpdatePasswordAPI = (data: EmployeeEditPasswordDTO) => {
+	return request.put('/employee/editPassword', data);
 };

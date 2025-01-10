@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useAppStore, useUserStore } from '@/stores';
+import Password from './Password.vue';
 
 const appStore = useAppStore();
 // 侧边栏状态
@@ -26,6 +27,15 @@ const userStore = useUserStore();
 const logout = async () => {
 	await userStore.logout();
 	await $router.push('/login');
+};
+
+// 密码弹层
+const pwdShow = ref(false);
+const handlePwd = () => {
+	pwdShow.value = true;
+};
+const handlePwdClosed = () => {
+	pwdShow.value = false;
 };
 </script>
 
@@ -55,12 +65,13 @@ const logout = async () => {
 					@mouseleave="mouseLeaves"
 				>
 					<el-button :class="shopShow ? 'active' : ''" type="primary">
-						管理员
+						<!-- TODO: 要经过store当中的name值 -->
+						{{ userStore.userinfo.name }}
 						<i class="el-icon-arrow-down"></i>
 					</el-button>
 					<!-- 弹窗 -->
 					<div v-if="shopShow" class="userList">
-						<p class="amendPwdIcon">修改密码<i></i></p>
+						<p class="amendPwdIcon" @click="handlePwd">修改密码<i></i></p>
 						<p class="logout" @click="logout">退出登录<i></i></p>
 					</div>
 				</div>
@@ -68,7 +79,8 @@ const logout = async () => {
 		</div>
 
 		<!-- TODO:营业状态弹层 -->
-		<!-- TODO: 修改密码弹层  -->
+
+		<Password :dialog-form-visible="pwdShow" @closed="handlePwdClosed" />
 	</div>
 </template>
 
