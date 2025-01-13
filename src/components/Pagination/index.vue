@@ -12,36 +12,30 @@ const props = withDefaults(defineProps<Props>(), {
 	pageSizes: () => [5, 10]
 });
 
-const emit = defineEmits<{
-	(e: 'update:currentPage', value: number): void;
-	(e: 'update:pageSize', value: number): void;
-}>();
+// 定义事件
+const emit = defineEmits(['update:currentPage', 'update:pageSize']);
 
 // 双向绑定当前页码和每页条数
 const internalCurrentPage = ref(props.currentPage);
 const internalPageSize = ref(props.pageSize);
 
+// 监听props
 watch(
-	() => props.currentPage,
-	(newVal) => {
-		internalCurrentPage.value = newVal;
+	() => [props.currentPage, props.pageSize],
+	([newPage, newPageSize]) => {
+		internalCurrentPage.value = newPage;
+		internalPageSize.value = newPageSize;
 	}
 );
 
+// 监听本地变量，并同步更新props
 watch(
-	() => props.pageSize,
-	(newVal) => {
-		internalPageSize.value = newVal;
+	() => [internalCurrentPage.value, internalPageSize.value],
+	([newPage, newPageSize]) => {
+		emit('update:currentPage', newPage);
+		emit('update:pageSize', newPageSize);
 	}
 );
-
-watch(internalCurrentPage, () => {
-	emit('update:currentPage', internalCurrentPage.value);
-});
-
-watch(internalPageSize, () => {
-	emit('update:pageSize', internalPageSize.value);
-});
 </script>
 
 <template>
