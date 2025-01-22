@@ -4,6 +4,7 @@ import DishTable from './components/DishTable.vue';
 import { dishDeleteAPI, dishGetListAPI } from '@/apis/dish';
 import type { DishVO } from '@/apis/types/dish';
 import { ElMessage, ElMessageBox } from 'element-plus';
+import { useDishCategoryStore } from '@/stores';
 
 const router = useRouter();
 
@@ -36,46 +37,10 @@ const getDishList = async (searching?: boolean) => {
 	total.value = res.data.total;
 };
 
-// 定义 DishCate 接口
-interface DishCate {
-	value: number;
-	label: string;
-}
-
-// 菜品分类数组
-const dishCate = ref<DishCate[]>([]);
-
-// 获取所有分类信息的方法
-const getAllCategoriesFromPages = async () => {
-	const categoryMap = new Map<number, DishCate>();
-	let page = 1;
-	const pageSize = 10;
-
-	while (true) {
-		const params = {
-			page,
-			pageSize
-		};
-
-		const res = await dishGetListAPI(params);
-		const records = res.data.records;
-
-		if (records.length === 0) break; // 如果当前页没有数据，则结束循环
-
-		records.forEach((dish) => {
-			if (!categoryMap.has(dish.categoryId)) {
-				categoryMap.set(dish.categoryId, {
-					value: dish.categoryId,
-					label: dish.categoryName
-				});
-			}
-		});
-
-		if (res.data.total <= page * pageSize) break; // 如果已经获取了所有数据，则结束循环
-		page++;
-	}
-	dishCate.value = Array.from(categoryMap.values());
-};
+// 加载store中的菜品分类信息
+const dishCateStore = useDishCategoryStore();
+// 获取菜品分类
+const dishCate = computed(() => dishCateStore.categories);
 
 // 复选框
 const checkList = ref<number[]>([]);
@@ -125,7 +90,8 @@ watch([page, pageSize], async () => {
 
 onMounted(() => {
 	getDishList();
-	getAllCategoriesFromPages();
+	// 获取所有分类信息
+	dishCateStore.getAllCategories();
 });
 </script>
 
@@ -142,12 +108,12 @@ onMounted(() => {
 				@clear="getDishList(true)"
 			>
 				<template #buttons>
-					<el-button type="danger" @click="handleDelete('Batch')"
-						>批量删除</el-button
-					>
-					<el-button type="success" @click="router.push('/dish/add')"
-						>新建菜品</el-button
-					>
+					<el-button type="danger" @click="handleDelete('Batch')">
+						批量删除
+					</el-button>
+					<el-button type="success" @click="router.push('/dish/add')">
+						新建菜品
+					</el-button>
 				</template>
 			</SearchBar>
 			<!-- 表格 -->

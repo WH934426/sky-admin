@@ -7,3 +7,4 @@ store.use(piniaPluginPersistedstate);
 export default store;
 export * from './modules/appStore';
 export * from './modules/userStore';
+export * from './modules/dishStore';
