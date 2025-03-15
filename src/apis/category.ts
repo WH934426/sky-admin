@@ -46,3 +46,12 @@ export const categoryUpdateAPI = (data: CategoryDTO) => {
 export const categoryUpdateStatusAPI = (status: number, id: number) => {
 	return request.post(`/category/status/${status}`, {}, { params: { id } });
 };
+
+/**
+ * 根据type获取分类列表
+ * @param type 分类类型 1 菜品分类 2 套餐分类
+ * @returns 分类列表
+ */
+export const categoryGetListByTypeAPI = (type: 1 | 2) => {
+	return request.get('/category/list', { params: { type } });
+};

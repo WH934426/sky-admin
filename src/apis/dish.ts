@@ -1,5 +1,10 @@
 import request from '@/utils/request';
-import type { DishPageQueryDTO, DishVO } from './types/dish';
+import type {
+	DishPageQueryDTO,
+	DishVO,
+	DishDTO,
+	GetDishById
+} from './types/dish';
 import type { PageResult } from '@/types/result';
 
 /**
@@ -27,4 +32,30 @@ export const dishDeleteAPI = (ids: string) => {
  */
 export const dishUpdateStatusAPI = (status: number, id: number) => {
 	return request.post(`/dish/status/${status}`, {}, { params: { id } });
+};
+
+/**
+ * 添加菜品
+ * @returns data 菜品数据
+ */
+export const dishAddAPI = (data: DishDTO) => {
+	return request.post('/dish', data);
+};
+
+/**
+ * 根据id查询菜品
+ * @param id 菜品id
+ * @returns
+ */
+export const dishGetByIdAPI = (id: number) => {
+	return request.get<GetDishById>(`/dish/${id}`);
+};
+
+/**
+ * 修改菜品
+ * @param data 需要修改的菜品数据
+ * @returns 修改后的菜品数据
+ */
+export const dishUpdateAPI = (data: DishDTO) => {
+	return request.put('/dish', data);
 };
